@@ -1,0 +1,103 @@
+@import "../../content/_colors.sass"
+@import "../../content/_fonts.sass"
+
+
+@mixin blockbuster-text
+	background: linear-gradient(180deg, #000 10%, #252525 30%, #0D61BC 40%, #fff 50%, #000 51%, #151515 56%, #a83cad 65%, #f9bbfc 80%, #f9bbfc)
+	-webkit-background-clip: text
+	-webkit-text-fill-color: transparent
+	-webkit-text-stroke-width: 0.5px
+	-webkit-text-stroke-color: $blockbuster-stroke
+	@media (min-width: 576px)
+		-webkit-text-stroke-width: 0.8px
+
+
+// background-image: linear-gradient(to bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)
+*
+	padding: 0
+	margin: 0
+
+body
+	font-size: 14px
+	
+@keyframes blur 
+	from 
+		text-shadow: 0px 0px 10px #fff, 0px 0px 10px #fff, 0px 0px 25px #fff,0px 0px 25px #fff,0px 0px 25px #fff,0px 0px 25px #fff,0px 0px 25px #fff,0px 0px 25px #fff,0px 0px 50px #fff,0px 0px 50px #fff,0px 0px 50px #7B96B8,0px 0px 150px #7B96B8,0px 10px 100px #7B96B8,0px 10px 100px #7B96B8,0px 10px 100px #7B96B8,0px 10px 100px #7B96B8,0px -10px 100px #7B96B8,0px -10px 100px #7B96B8
+
+
+.header
+	background: url(../../content/xs/img/header-bg.gif) no-repeat
+	background-size: cover
+	background-position: top center
+	height: 500px
+	box-shadow: inset 0 -12px 10px #000
+    display: flex
+    flex-direction: column
+	@media (min-width: 576px) 
+		background-image: url(../../content/sm/img/header-bg.jpg)
+	@media (min-width: 768px)
+		height: 550px	
+	@media (min-width: 992px)
+		background-size: auto
+	&__logo
+		height: 230px
+		background: url(../../content/xs/img/logo.png) no-repeat
+		background-size: contain
+		background-position: top center
+	&__navBlock
+		height: 40%
+		display: flex
+		align-items: center
+		justify-content: space-around
+		width: 100%
+		flex-wrap: wrap
+	&__navButton
+		flex-basis: 49%
+		text-align: center
+		font-size: 35px
+		font-family: 'MachineC'
+		@media (min-width: 576px)
+			font-size: 45px
+		@media (min-width: 1200px)
+			flex-basis: auto
+			font-size: 60px
+		& a
+			@include blockbuster-text
+			text-decoration: none 
+			position: relative
+			&:hover
+				animation: blur .40s ease-out
+			&:before
+				font-size: 30px
+				font-family: "Streamster"
+				position: absolute
+				transform: rotate(-20deg)
+				-webkit-text-stroke-color: transparent
+				-webkit-text-fill-color: $vice-pink
+				text-shadow: 2px 2px 1px #000
+				@media (min-width: 576px)
+					font-size: 35px
+			
+@each $class, $name, $top, $left in (Menu, menu, -20px, -20px), (Promotions, promotions, -20px, -45px), (Gallery, gallery, -22px, -25px), (Events, events, -20px, -20px), (Radio, radio, -20px, -20px)
+	.nav
+		&#{$class} a:before 
+			content: '#{$name}'
+			top: #{$top}
+			left: #{$left}
+			
+// &-promotions a:before 
+	// 	content: "promotions"
+	// 	top: -20px
+	// 	left: -45px
+	// &-gallery a:before 
+	// 	content: "gallery"
+	// 	top: -22px
+	// 	left: -25px
+	// &-events a:before 
+	// 	content: "events"
+	// 	top: -20px
+	// 	left: -20px
+	// &-radio a:before 
+	// 	content: "radio"
+	// 	top: -20px
+	// 	left: -20px
