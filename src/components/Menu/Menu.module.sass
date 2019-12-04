@@ -8,14 +8,59 @@
     background-position: center
     box-shadow: inset 0 12px 10px #000, inset 0 -12px 10px #000
     display: flex
-    justify-content: space-between
+    justify-content: space-evenly
+    flex-direction: column
+
+
     &NavList
         display: flex
-        flex-direction: column
         justify-content: space-around
     &NavItem
         color: $main-text
         font-size: 60px
         font-family: "ua_maximal_beasts"
         list-style: none
-        padding-left: 100px
+        text-decoration: none
+
+
+    &Context
+        display: flex
+        justify-content: space-around
+
+    &PreviewItem
+        height: 70vh
+        width: 50vw
+        background-color: #fff
+
+    &CurrentList
+        display: flex
+        height: 70vh  
+        width: 50vw
+        background-color: #faa
+        justify-content: space-between
+    &Items
+        &Container
+            display: flex
+        &Nav
+            display: flex
+            font-family: "ua_maximal_beasts"
+            flex-direction: column
+            & a
+                text-decoration: none
+                margin-top: 70px
+                margin-left: 20px
+                font-size: 20px
+        &List 
+            display: flex
+            width: 42vw
+            flex-wrap: wrap
+            padding-top: 20px
+        
+
+
+    &Item 
+        flex-basis: 21%
+        & img
+            height: 20vh
+        & p 
+            text-align: center
