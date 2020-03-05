@@ -27,16 +27,11 @@
         display: flex
         justify-content: space-around
 
-    &PreviewItem
-        height: 70vh
-        width: 50vw
-        background-color: #fff
-
     &CurrentList
         display: flex
         height: 70vh  
-        width: 50vw
-        background-color: #faa
+        width: 100%
+        background-color: #f1c225
         justify-content: space-between
     &Items
         &Container
@@ -49,18 +44,32 @@
                 text-decoration: none
                 margin-top: 70px
                 margin-left: 20px
-                font-size: 20px
+                font-size: 25px
+                color: #361ebe
         &List 
             display: flex
-            width: 42vw
             flex-wrap: wrap
             padding-top: 20px
+            justify-content: space-around
         
 
 
     &Item 
+        width: 25vw
         flex-basis: 21%
+        text-decoration: none
+        cursor: auto
         & img
             height: 20vh
         & p 
             text-align: center
+        &Name
+            font-size: 22px
+            color: black
+        &Description 
+            font-style: italic
+            color: black
+        &Price 
+            font-weight: bold
+            color: #1859a3
+

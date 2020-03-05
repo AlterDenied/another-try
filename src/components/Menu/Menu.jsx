@@ -1,9 +1,9 @@
 import React from 'react';
 import s from "./Menu.module.sass"
 import { Link } from 'react-router-dom';
-import { Switch, Route } from "react-router-dom";
-import { renderDrinksReducer } from './../../store/Menu/reducers';
-
+import { Switch, Route } from "react-router-dom";      
+import { darkBeerInfo, lightBeerInfo } from '../../Redux/Store/Menu/state';
+import { nonAlcInfo } from './../../Redux/Store/Menu/state';
 
 function createPathArray(path, arrLength, nameArray) {
     const array = [];
@@ -48,8 +48,30 @@ function renderMenuItems(infoItemArray) {
     )
 }
 
+function renderMenuItems2(infoItemArray) {
+    return (
+        <div className={s.menuItemsList}>
+                {infoItemArray.map((itemObject) => {
+                    let categoryName = itemObject.category;
+                    let itemId = itemObject.id;
+                    return (
+                        <Link className={s.menuItem} to={"/menu/drinks/" + categoryName + "/" + itemId}>
+                            <div>
+                                <p><img src={itemObject.path} alt="" /></p>
+                                <p className={s.menuItemName}>{itemObject.name}</p>
+                                <p className={s.menuItemDescription}>{itemObject.description}</p>
+                                <p className={s.menuItemPrice}>{itemObject.price + " руб"}</p>
+                                <button>добавить</button>
+                            </div>
+                        </Link>     
+                    )
+                })}
+        </div>
+    )
+}
+
 let dBeerNames = ["Braunwald", "Porter", "Captain Morion", "John Gaspar", "Milk Stout", "Mr. Stout", "Stout", "Hamer & Sikkel"];
-let lBeerNames = ["Берлингер", "Новая Бавария", "Микулин 900", "Lager", "Corona Extra", "Belgian Abbey Ale", "L.Apa", "Goldy"]
+let lBeerNames = []
 let nonAlcNames = ["Red Bull", "Red Bull Tropical", "Red Bull Summer", "Red Bull SugarFree"]
 
 export class Menu extends React.Component {
@@ -78,7 +100,6 @@ const MenuContext = () => {
     return (
         <div className={s.menuContext}>
             <MenuList />
-            <PreviewItem />
         </div>
     )
 }
@@ -104,22 +125,6 @@ const MenuList = () => {
     )
 }
 
-const PreviewItem = () => {
-    return (
-        <div className={s.menuPreviewItem}>
-            <div className={s.menuPreviewImg}>
-                <img src="" alt="" />
-            </div>
-            <div className={s.menuPreviewDescription}>
-                <h1></h1>
-                <p></p>
-            </div>
-            <div className={s.menuPreviewButtons}>
-                <button>Добавить к заказу</button>
-            </div>
-        </div>
-    )
-}
 
 const Snacks = () => {
     return (
@@ -147,19 +152,19 @@ const Drinks = () => {
     return (
         <div className={s.menuItemsContainer}>
             <div className={s.menuItemsNav}>
-                <Link to="/menu/drinks/dark">Тёмное</Link>
+                <Link to="/menu/drinks/darkBeer">Тёмное</Link>
                 <Link to="/menu/drinks/light">Светлое</Link>
                 <Link to="/menu/drinks/non_alc">Безалкогольные</Link>
             </div>
             <Switch>
-                <Route path="/menu/drinks/dark">
-                    {renderMenuItems(createPathArray('./img/drinks/dBeer', 8, dBeerNames))}
+                <Route path="/menu/drinks/darkBeer">
+                    {renderMenuItems2(darkBeerInfo)}
                 </Route>
                 <Route path="/menu/drinks/light">
-                    {renderMenuItems(createPathArray('./img/drinks/lBeer', 8, lBeerNames))}
+                    {renderMenuItems2(lightBeerInfo)}
                 </Route>
                 <Route path="/menu/drinks/non_alc">
-                    {renderMenuItems(createPathArray('./img/drinks/nonAlc', 4, nonAlcNames))}
+                    {renderMenuItems2(nonAlcInfo)}
                 </Route>
             </Switch>
         </div>
